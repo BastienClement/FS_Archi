@@ -1,0 +1,5 @@
+## Interface: 60200
+## Title: |cff64b4ffFrom Scratch|r Archimonde
+## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3
+
+FS_Archi.lua
