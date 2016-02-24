@@ -59,7 +59,7 @@ function Archimonde:COMBAT_LOG_EVENT_UNFILTERED(_, _, event, ...)
 						if GetRaidTargetIndex(target) ~= symbole then
 							SetRaidTargetIcon(target, symbole)
 							C_Timer.After(15, function()
-								SetRaidTargetIcon(target, 0)
+								SetRaidTarget(target, 0)
 							end)
 						end
 						
@@ -72,7 +72,6 @@ function Archimonde:COMBAT_LOG_EVENT_UNFILTERED(_, _, event, ...)
 							{ "Emphasized", 0, SYMBOLES_NAME[i] .. " (on YOU)" },
 							{ "Emphasized", 0, SYMBOLES_NAME[i] .. " (on YOU)", delay = 2 },
 							{ "Sound" , 0, "Warning" },
-							--{ "Bar", 187050, duration, SYMBOLES_NAME[i] .. " (on YOU)", SYMBOLES_ICON[i] }
 						}, targetname)
 						
 						local multicast_targets = {}
@@ -100,7 +99,12 @@ function Archimonde:COMBAT_LOG_EVENT_UNFILTERED(_, _, event, ...)
 						})
 						
 						C_Timer.After(2 + (0.1 * i), function()
-							SendChatMessage(("%s soaked by %s, %s, %s"):format(UnitName(target), soak_a and UnitName(soak_a) or "?", soak_b and UnitName(soak_b) or "?", soak_c and UnitName(soak_c) or "?"), "RAID")
+							SendChatMessage(("%s soaked by %s, %s, %s"):format(
+								UnitName(target),
+								soak_a and UnitName(soak_a) or "?",
+								soak_b and UnitName(soak_b) or "?",
+								soak_c and UnitName(soak_c) or "?"
+							), "RAID")
 						end)
 					end
 					
